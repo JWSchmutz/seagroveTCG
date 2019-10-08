@@ -1,0 +1,97 @@
+<li class="nav-item ">
+    <a class="nav-link" href="/">Home</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="/admin/cups">Add Cup Results <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/matchups">Vote on Matchups</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-1 col-md-2"></div>
+        <div class="col-sm-10 col-md-8">
+            <!-- Material form contact -->
+            <div class="card">
+
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Add New Cup</strong>
+                </h5>
+
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+
+                    <!-- Form -->
+                    <form class="text-center" style="color: #757575;">
+
+                        <!-- Cup Id -->
+                        <div class="md-form mt-3">
+                            <input type="text" id="cup-id" class="form-control">
+                            <label for="cup-id">Cup ID</label>
+                        </div>
+
+                        <!-- Subject -->
+                        <span>Division</span>
+                        <select class="mdb-select" id="division">
+                            <option value="masters" selected>Masters</option>
+                            <option value="seniors">Seniors</option>
+                            <option value="juniors">Juniors</option>
+                        </select>
+                        <!-- Material input -->
+                        <div class="md-form">
+                            <input type="number" id="players" class="form-control">
+                            <label for="players">Players in Division</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="players2" class="form-control">
+                            <label for="players2">Other players paired in division</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="rounds" class="form-control">
+                            <label for="rounds">Rounds</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="cut-points" class="form-control">
+                            <label for="cut-points">Lowest points that made cut</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="cut-size" class="form-control">
+                            <label for="cut-size">Number of Players in Cut</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="bubbled-in" class="form-control">
+                            <label for="bubbled-in">Bubbled in</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" id="bubbled-out" class="form-control">
+                            <label for="bubbled-out">Bubbled out</label>
+                        </div>
+                        <!--Message-->
+                        {{!-- <div class="md-form">
+                            <textarea id="materialContactFormMessage" class="form-control md-textarea"
+                                rows="3"></textarea>
+                            <label for="materialContactFormMessage">Notes/Comments</label>
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="notes">Additional Notes/Comments</label>
+                            <textarea class="form-control rounded-0" id="notes" rows="10"></textarea>
+                        </div>
+                        <!-- Send button -->
+                        <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                            type="submit" id="cup-submit">Submit</button>
+
+                    </form>
+                    <!-- Form -->
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-1 col-md-2"></div>
+    </div>
+</div>
+<!-- Material form contact -->
