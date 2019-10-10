@@ -9,3 +9,23 @@ body {
 .opaque {
   opacity: 0.9;
 }
+
+.pkmn-card-odd {
+  width: 50%;
+  transform: rotate(-15deg);
+  position: relative;
+  z-index: 3;
+}
+
+.pkmn-card-even {
+  width: 50%;
+  position: relative;
+  right: 10%;
+  transform: rotate(15deg);
+  z-index: 1;
+}
+
+.pkmn-card-img {
+  float: left;
+  width: 200px;
+}

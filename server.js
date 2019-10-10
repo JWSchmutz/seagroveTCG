@@ -18,10 +18,10 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-const routes = require("./controllers/cupsController");
-
-app.use(routes);
-
+const cupRoutes = require("./controllers/cupsController");
+const matchupRoutes = require("./controllers/matchupsController");
+app.use(cupRoutes);
+app.use(matchupRoutes);
 // listen on port 3000
 const PORT = process.env.PORT || 3000;
 db.sequelize.sync().then(function() {

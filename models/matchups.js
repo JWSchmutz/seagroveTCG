@@ -1,41 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
-  var Matchups = sequelize.define("Matchups", {
-    deck1: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    deck2: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    win: {
+  var Matchups = sequelize.define("Matchup", {
+    wins: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    loss: {
+    losses: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    tie: {
+    ties: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    pokemon1a: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    pokemon1b: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    pokemon2a: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    pokemon2b: {
-      type: DataTypes.STRING,
       allowNull: false
     }
   });
+
+  Matchups.associate = function(models) {
+    Matchups.belongsTo(models.Deck, {
+      as: "deckMatchup"
+    });
+  };
+
   return Matchups;
 };

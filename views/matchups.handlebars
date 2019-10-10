@@ -23,34 +23,40 @@
                     {{#each matchup}}
                     <div class="matchup">
                         <h1 class="text-center">{{deck1}} vs {{deck2}}</h1>
-                        <div class="d-none" id="pokemon-1-{{id}}">{{pokemon1}}</div>
-                        <div class="d-none" id="pokemon-2-{{id}}">{{pokemon2}}</div>
                         <div class="row">
-                            <div class="col-sm-1 col-md-2 col-lg-3"></div>
-                            <div class="col-6 col-sm-5 col-md-4 col-lg-3">{{pokemon1}}</div>
-                            <div class="col-6 col-sm-5 col-md-4 col-lg-3">{{pokemon2}}</div>
-                            <div class="col-sm-1 col-md-2 col-lg-3"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    type="submit" id="cup-submit">{{deck1}}</button>
-                            </div>
-                            <div class="col-4">
-                                <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    type="submit" id="cup-submit">Basically 50-50</button>
-                            </div>
-                            <div class="col-4">
-                                <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    type="submit" id="cup-submit">{{deck2}}</button>
+                            <div class="col-6" id="card-holder-{{id}}-1">
+                                {{!-- <img class="pkmn-card-even"
+                                    src={{images[{{pokemon1a}}]}}><img class="pkmn-card-even"
+                                    src={{images[{{pokemon1b}}]}}> --}}
                             </div>
                         </div>
                     </div>
-                    {{/each}}
+                    <div class="row">
+                        <div class="col-sm-1 col-md-2 col-lg-3"></div>
+                        <div class="col-6 col-sm-5 col-md-4 col-lg-3">{{pokemon1}}</div>
+                        <div class="col-6 col-sm-5 col-md-4 col-lg-3">{{pokemon2}}</div>
+                        <div class="col-sm-1 col-md-2 col-lg-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                type="submit" id="cup-submit">{{deck1}}</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                type="submit" id="cup-submit">Basically 50-50</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn ml-0 btn-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                type="submit" id="cup-submit">{{deck2}}</button>
+                        </div>
+                    </div>
                 </div>
-
+                {{/each}}
             </div>
+
         </div>
-        <div class="col-sm-1 col-md-2"></div>
     </div>
+    <div class="col-sm-1 col-md-2" id="end"></div>
+</div>
 </div>
