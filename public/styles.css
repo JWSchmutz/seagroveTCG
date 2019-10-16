@@ -29,3 +29,17 @@ body {
   float: left;
   width: 200px;
 }
+.vote-btn {
+  border: white solid 2px;
+}
+.btn.active {
+  border: black inset 2px;
+}
+
+.btn-success {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  z-index: 100;
+  /* border-radius: 4px; */
+}

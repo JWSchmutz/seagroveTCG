@@ -4,81 +4,86 @@ const axios = require("axios");
 
 const db = require("../models");
 
-router.get("/admin/matchups", (req, res) => {
+router.get("/admin/decks", (req, res) => {
   // send us to the next get function instead.
   res.render("matchups2", { jsFile: "matchups2" });
 });
 
-router.post("/api/matchups", (req, res) => {
-  db.Deck.create(req.body).then(function(dbCup) {
-    res.redirect("/");
+router.post("/api/decks", (req, res) => {
+  db.Deck.create(req.body).then(function(deck) {
+    db.Deck.findAll().then(decks => {
+      console.log(decks.length);
+      const newMatchups = [];
+      for (var i = 0; i < decks.length - 1; i++) {
+        const newMatchup = {};
+
+        newMatchup.deck1 = decks[decks.length - 1].dataValues.deck;
+        newMatchup.deck2 = decks[i].dataValues.deck;
+        newMatchup.pokemon1a = decks[decks.length - 1].dataValues.pokemon1;
+        newMatchup.pokemon1b = decks[decks.length - 1].dataValues.pokemon2;
+        newMatchup.pokemon2a = decks[i].dataValues.pokemon1;
+        newMatchup.pokemon2b = decks[i].dataValues.pokemon2;
+
+        newMatchups.push(newMatchup);
+      }
+      // console.log(newMatchups);
+      db.Matchup.bulkCreate(newMatchups);
+      res.redirect("/admin/matchups");
+    });
   });
 });
 
-router.get("/matchups", (req, res) => {
-  db.Deck.findAll({
-    include: [
-      {
-        model: db.Deck,
-        as: "deckMatchup"
-      }
-    ]
-  })
-    .then(matchups => {
-      console.log(matchups);
+router.put("/api/matchups", (req, res, next) => {
+  console.log(req.body);
+  let winsQuery;
+  let lossesQuery;
+  let tiesQuery;
+  const promises = [];
+  if (req.body.wins.length) {
+    winsQuery = db.Matchup.increment("wins", { where: { id: req.body.wins } });
+    promises.push(winsQuery);
+  }
+  if (req.body.losses.length) {
+    lossesQuery = db.Matchup.increment("losses", {
+      where: { id: req.body.losses }
+    });
+    promises.push(winsQuery);
+  }
+  if (req.body.ties.length) {
+    tiesQuery = db.Matchup.increment("ties", { where: { id: req.body.ties } });
+    promises.push(winsQuery);
+  }
+  Promise.all(promises)
+    .then(responses => {
+      res.end();
     })
-    // use promise method to pass the cups...
-    .then(function(matchups) {
-      const cardsToGrab = [];
-      for (let i = 0; i < matchups.length; i++) {
-        if (!cardsToGrab.includes(matchups[i].dataValues.pokemon1a)) {
-          cardsToGrab.push(matchups[i].dataValues.pokemon1a);
-        }
-        if (!cardsToGrab.includes(matchups[i].dataValues.pokemon1b)) {
-          cardsToGrab.push(matchups[i].dataValues.pokemon1b);
-        }
-        if (!cardsToGrab.includes(matchups[i].dataValues.pokemon2a)) {
-          cardsToGrab.push(matchups[i].dataValues.pokemon2a);
-        }
-        if (!cardsToGrab.includes(matchups[i].dataValues.pokemon2b)) {
-          cardsToGrab.push(matchups[i].dataValues.pokemon2b);
-        }
-      }
-      const urlEnd = cardsToGrab.join("|");
-      let pkmnImages;
-      let url = "https://api.pokemontcg.io/v1/cards?id=" + urlEnd;
-      axios.get(url).then(response => {
-        pkmnImages = response.data.cards;
-
-        // into the main index, updating the page
-        const hbsObject = {
-          matchup: matchups,
-          jsFile: "matchups"
-        };
-        console.log(matchups[0].dataValues);
-        // for (let i = 0; i < pkmnImages.length; i++) {
-        //   images[pkmnImages[i].id] = pkmnImages[i].imageUrl;
-        // }
-
-        return res.render("matchups", hbsObject);
-      });
+    .catch(err => {
+      console.log("**********ERROR RESULT****************");
+      console.log(err);
     });
 });
 
-module.exports = router;
+router.get("/matchups", (req, res) => {
+  db.Matchup.findAll({}).then(matchups => {
+    // use promise method to pass the cups...
+    // into the main index, updating the page
+    var matchupsMinified = [];
+    for (var i = 0; i < matchups.length; i++) {
+      matchupsMinified.push(matchups[i].dataValues);
+    }
+    console.log(matchupsMinified);
+    const hbsObject = {
+      jsFile: "matchups",
+      matchups: matchupsMinified
+    };
+    console.log(hbsObject.matchups);
 
-// for (let i = 0; i < res.cards.length; i++) {
-//   const img = $("<img>");
-//   img.attr("src", res.cards[i].imageUrl);
-//   if (i % 2) {
-//     img.addClass("pkmn-card-even");
-//   } else {
-//     img.addClass("pkmn-card-odd");
-//   }
-//   if (i < 2) {
-//     $("#card-holder-1-1").append(img);
-//   } else {
-//     $("#card-holder-1-2").append(img);
-//   }
-// }
-//   });
+    // for (let i = 0; i < pkmnImages.length; i++) {
+    //   images[pkmnImages[i].id] = pkmnImages[i].imageUrl;
+    // }
+
+    return res.render("matchups", hbsObject);
+  });
+});
+
+module.exports = router;

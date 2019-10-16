@@ -26,7 +26,7 @@ $("#deck-submit").click(function(e) {
       : null
   };
   console.log(newDeck);
-  $.post("/api/matchups", newDeck, function() {
+  $.post("/api/decks", newDeck, function() {
     console.log(newDeck);
     $("#pokemon2").val("");
     $("#pokemon1").val("");

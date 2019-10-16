@@ -14,12 +14,12 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Decks.associate = function(models) {
-    Decks.belongsToMany(models.Deck, {
-      as: "deckMatchup",
-      through: models.Matchup
-    });
-  };
+  // Decks.associate = function(models) {
+  //   Decks.belongsToMany(models.Deck, {
+  //     as: "deckMatchup",
+  //     through: models.Matchup
+  //   });
+  // };
 
   return Decks;
 };
