@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Decks = sequelize.define("Deck", {
+  var DecksExp = sequelize.define("DeckExp", {
     deck: {
       type: DataTypes.STRING,
       allowNull: false
@@ -14,5 +14,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return Decks;
+  return DecksExp;
 };

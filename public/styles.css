@@ -43,3 +43,59 @@ body {
   z-index: 100;
   /* border-radius: 4px; */
 }
+
+.matchup-name-label > span {
+  border-bottom: black solid 2px;
+}
+
+.matchup-name-label {
+  transform: rotate(-45deg);
+  display: inline-block;
+  bottom: 0px;
+}
+
+.matchup-tab:hover {
+  background-color: white;
+  color: #33b5e5;
+}
+.matchup-tab {
+  background-color: #33b5e5;
+  color: white;
+  cursor: pointer;
+}
+
+.matchup-exp-tab:hover {
+  background-color: white;
+  color: #33b5e5;
+}
+.matchup-exp-tab {
+  background-color: #33b5e5;
+  color: white;
+  cursor: pointer;
+}
+.active-matchup-tab,
+.active-matchup-exp-tab {
+  border-left: black 4px solid;
+  border-right: none;
+  background-color: white;
+  color: #33b5e5;
+}
+
+.matchup-names-holder {
+  position: relative;
+}
+
+.graph-bar {
+  height: 40px;
+}
+
+.matchup-line {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.matchup-name-text {
+  position: relative;
+  bottom: 40px;
+  height: 0px;
+}
