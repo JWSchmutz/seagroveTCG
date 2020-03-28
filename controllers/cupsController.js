@@ -38,7 +38,6 @@ router.get("/", function(req, res) {
   Promise.all(promises)
     // use promise method to pass the cups...
     .then(function(response) {
-      // console.log(response);
       // into the main index, updating the page
       var hbsObject = {
         cup: response[0],
@@ -48,6 +47,7 @@ router.get("/", function(req, res) {
         deckExp: response[4],
         jsFile: "main"
       };
+      console.log(hbsObject);
       return res.render("index", hbsObject);
     });
 });

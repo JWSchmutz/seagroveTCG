@@ -25,9 +25,7 @@ $("#deck-submit").click(function(e) {
           .trim()
       : null
   };
-  console.log(newDeck);
   $.post("/api/decks", newDeck, function() {
-    console.log(newDeck);
     $("#pokemon2").val("");
     $("#pokemon1").val("");
     $("#deck-name").val("");
@@ -59,9 +57,7 @@ $("#deck-submit-exp").click(function(e) {
           .trim()
       : null
   };
-  console.log(newDeck);
   $.post("/api/decksExp", newDeck, function() {
-    console.log(newDeck);
     $("#pokemon2").val("");
     $("#pokemon1").val("");
     $("#deck-name").val("");
@@ -79,7 +75,6 @@ function search() {
   fetch(url)
     .then(data => data.json())
     .then(res => {
-      console.log(res);
       for (let i = 0; i < res.cards.length; i++) {
         const img = $("<img>");
         img.attr("src", res.cards[i].imageUrl);

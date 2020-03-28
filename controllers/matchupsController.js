@@ -17,7 +17,6 @@ router.get("/admin/decksExp", (req, res) => {
 router.post("/api/decks", (req, res) => {
   db.Deck.create(req.body).then(function(deck) {
     db.Deck.findAll().then(decks => {
-      console.log(decks.length);
       const newMatchups = [];
       for (var i = 0; i < decks.length - 1; i++) {
         const newMatchup = {};
@@ -31,7 +30,6 @@ router.post("/api/decks", (req, res) => {
 
         newMatchups.push(newMatchup);
       }
-      // console.log(newMatchups);
       db.Matchup.bulkCreate(newMatchups);
       res.redirect("/admin/decks");
     });
@@ -41,7 +39,6 @@ router.post("/api/decks", (req, res) => {
 router.post("/api/decksExp", (req, res) => {
   db.DeckExp.create(req.body).then(function(deck) {
     db.DeckExp.findAll().then(decks => {
-      console.log(decks.length);
       const newMatchups = [];
       for (var i = 0; i < decks.length - 1; i++) {
         const newMatchup = {};
@@ -55,7 +52,6 @@ router.post("/api/decksExp", (req, res) => {
 
         newMatchups.push(newMatchup);
       }
-      // console.log(newMatchups);
       db.MatchupExp.bulkCreate(newMatchups);
       res.redirect("/admin/decks");
     });
@@ -63,7 +59,6 @@ router.post("/api/decksExp", (req, res) => {
 });
 
 router.put("/api/matchups", (req, res, next) => {
-  console.log(req.body);
   let winsQuery;
   let lossesQuery;
   let tiesQuery;
@@ -82,7 +77,6 @@ router.put("/api/matchups", (req, res, next) => {
     tiesQuery = db.Matchup.increment("ties", { where: { id: req.body.ties } });
     promises.push(tiesQuery);
   }
-  console.log("================================================", promises);
 
   Promise.all(promises)
     .then(responses => {
@@ -95,7 +89,6 @@ router.put("/api/matchups", (req, res, next) => {
 });
 
 router.put("/api/matchupsExp", (req, res, next) => {
-  console.log(req.body);
   let winsQuery;
   let lossesQuery;
   let tiesQuery;
@@ -136,12 +129,10 @@ router.get("/matchups", (req, res) => {
     for (var i = 0; i < matchups.length; i++) {
       matchupsMinified.push(matchups[i].dataValues);
     }
-    // console.log(matchupsMinified);
     const hbsObject = {
       jsFile: "matchups",
       matchups: matchupsMinified
     };
-    // console.log(hbsObject.matchups);
 
     // for (let i = 0; i < pkmnImages.length; i++) {
     //   images[pkmnImages[i].id] = pkmnImages[i].imageUrl;
@@ -159,12 +150,10 @@ router.get("/matchupsExp", (req, res) => {
     for (var i = 0; i < matchups.length; i++) {
       matchupsMinified.push(matchups[i].dataValues);
     }
-    // console.log(matchupsMinified);
     const hbsObject = {
       jsFile: "matchups",
       matchups: matchupsMinified
     };
-    // console.log(hbsObject.matchups);
 
     // for (let i = 0; i < pkmnImages.length; i++) {
     //   images[pkmnImages[i].id] = pkmnImages[i].imageUrl;

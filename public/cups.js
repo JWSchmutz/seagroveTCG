@@ -15,8 +15,6 @@ $("#cup-submit").click(function(e) {
     notes: parseInt($("#notes").val())
   };
   $.post("/api/cups", newCup, function() {
-    console.log(newCup);
-    console.log("this is happening");
     window.location.replace("localhost:3000");
   });
   $("#cup-id").val(""),

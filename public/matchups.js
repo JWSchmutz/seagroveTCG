@@ -26,7 +26,6 @@ $(".btn-success").on("click", function() {
     };
     updates[newVotes.opinion].push(newVotes.matchup);
   });
-  console.log(updates);
   if ($(this).attr("id") === "standard-vote") {
     $.ajax({
       url: "/api/matchups",

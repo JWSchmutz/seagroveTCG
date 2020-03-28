@@ -92,7 +92,6 @@ const decksMatchups = [];
 decks.forEach(function(element) {
   decksMatchups.push({ deck: element, matchups: [] });
 });
-console.log(decksMatchups);
 
 for (var i = 1; i < decksMatchups.length + 1; i++) {
   for (var j = 0; j < matchupsObj.length; j++) {
@@ -137,7 +136,6 @@ const decksMatchupsExp = [];
 decksExp.forEach(function(element) {
   decksMatchupsExp.push({ deck: element, matchups: [] });
 });
-console.log(decksMatchupsExp);
 
 for (var i = 1; i < decksMatchupsExp.length + 1; i++) {
   for (var j = 0; j < matchupsExpObj.length; j++) {
@@ -176,13 +174,10 @@ for (var i = 0; i < decksMatchups.length; i++) {
     var losses = parseInt(decksMatchups[i].matchups[j].losses);
     var ties = parseInt(decksMatchups[i].matchups[j].ties);
     var total = wins + losses + ties;
-    console.log(wins, ties, losses, total);
     var lossesPercentage = (100 * losses) / total;
     var tiesPercentage = (100 * ties) / total;
     var winsPercentage = (100 * wins) / total;
-    console.log(winsPercentage, lossesPercentage, tiesPercentage);
     var matchupLine = $("<div class='matchup-line d-flex'>");
-    console.log(decksMatchups[i].matchups[j].matchup);
     matchupLine.append(
       `<div class='bg-success graph-bar' style='width:${winsPercentage}%'>`
     );
@@ -214,13 +209,10 @@ for (var i = 0; i < decksMatchupsExp.length; i++) {
     var losses = parseInt(decksMatchupsExp[i].matchups[j].losses);
     var ties = parseInt(decksMatchupsExp[i].matchups[j].ties);
     var total = wins + losses + ties;
-    console.log(wins, ties, losses, total);
     var lossesPercentage = (100 * losses) / total;
     var tiesPercentage = (100 * ties) / total;
     var winsPercentage = (100 * wins) / total;
-    console.log(winsPercentage, lossesPercentage, tiesPercentage);
     var matchupLine = $("<div class='matchup-line d-flex'>");
-    console.log(decksMatchupsExp[i].matchups[j].matchup);
     matchupLine.append(
       `<div class='bg-success graph-bar' style='width:${winsPercentage}%'>`
     );
